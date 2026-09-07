@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070707">
+  <title>MASA Wallet</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <img src="assets/masa-logo.png" class="brand-logo" alt="MASA">
+        <div><div class="brand">MASA</div><div class="brand-sub">WALLET</div></div>
+      </div>
+      <div class="top-actions">
+        <div class="network-pill"><span class="dot"></span> MASA MAINNET</div>
+        <button class="icon-btn" id="notifyBtn" aria-label="Notifications">◔</button>
+        <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="hero-grid">
+        <div class="balance-card glass">
+          <div class="eyebrow">TOTAL BALANCE <button class="eye" id="toggleBalance">◉</button></div>
+          <div class="balance-line"><span id="balance">12,482.51</span><small>MASA</small></div>
+          <div class="fiat" id="fiat">≈ Rp 220,000,000</div>
+          <div class="balance-foot"><span class="positive">▲ +2.84%</span><span>24H</span><span class="muted">Portfolio value</span></div>
+          <div class="sparkline"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="identity-card glass">
+          <div class="card-head"><span>MY WALLET</span><button class="copy-mini" id="copyAddress">COPY</button></div>
+          <div class="wallet-address" id="address">MASA1q7x9a3v8q2f6l9d4e8g2h7j3k5m9n2p4</div>
+          <div class="identity-row"><span class="muted">Network</span><strong><span class="dot"></span> Mainnet</strong></div>
+          <div class="identity-row"><span class="muted">Security</span><strong>Biometric + PIN</strong></div>
+        </div>
+      </section>
+
+      <section class="quick-actions">
+        <button class="action primary" data-screen="send"><span>↑</span><b>SEND</b><small>Transfer MASA</small></button>
+        <button class="action" data-screen="receive"><span>↓</span><b>RECEIVE</b><small>Get MASA</small></button>
+        <button class="action" data-screen="scan"><span>⌗</span><b>SCAN</b><small>QR payment</small></button>
+        <button class="action" id="tradeBtn"><span>↗</span><b>TRADE</b><small>Open MASA DEX</small></button>
+        <button class="action" id="minerBtn"><span>⛏</span><b>MINER</b><small>Open MASA Miner</small></button>
+      </section>
+
+      <section class="section-grid">
+        <div class="panel glass assets-panel">
+          <div class="section-title"><div><span class="eyebrow">PORTFOLIO</span><h2>Assets</h2></div><button class="text-btn">Manage</button></div>
+          <div class="asset-row featured"><img src="assets/masa-logo.png" alt="MASA"><div><b>MASA</b><span>MASA Mainnet</span></div><div class="asset-value"><b>12,482.51</b><span>≈ Rp 220,000,000</span></div></div>
+          <div class="asset-row"><div class="asset-badge msr">M</div><div><b>MSR</b><span>Market Intelligence</span></div><div class="asset-value"><b>320.00</b><span>≈ Rp 5,640,000</span></div></div>
+        </div>
+
+        <div class="panel glass ecosystem-panel">
+          <div class="section-title"><div><span class="eyebrow">MASA ECOSYSTEM</span><h2>Enter a World</h2></div></div>
+          <div class="ecosystem-card" id="tradeCard"><div class="eco-icon trade">↗</div><div><b>MASA DEX</b><span>Trade & liquidity</span></div><button>OPEN</button></div>
+          <div class="ecosystem-card" id="minerCard"><div class="eco-icon miner">⛏</div><div><b>MASA MINER</b><span>Contribute & earn</span></div><button>OPEN</button></div>
+          <div class="ecosystem-card disabled"><div class="eco-icon msr">M</div><div><b>MSR</b><span>Market intelligence</span></div><button>SOON</button></div>
+        </div>
+      </section>
+
+      <section class="panel glass activity-panel">
+        <div class="section-title"><div><span class="eyebrow">ACTIVITY</span><h2>Recent transactions</h2></div><button class="text-btn" data-screen="activity">View all</button></div>
+        <div class="activity-list">
+          <div class="activity-row"><div class="activity-icon received">↓</div><div><b>Received</b><span>From MASA1...8KQ2 · 2m ago</span></div><strong class="positive">+120 MASA</strong></div>
+          <div class="activity-row"><div class="activity-icon sent">↑</div><div><b>Sent</b><span>To MASA1...9P7D · 1h ago</span></div><strong class="negative">-50 MASA</strong></div>
+          <div class="activity-row"><div class="activity-icon mining">⛏</div><div><b>Mining Reward</b><span>Network contribution · 5h ago</span></div><strong class="positive">+8 MASA</strong></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-screen="home">⌂<span>Home</span></button>
+      <button class="nav-item" data-screen="assets">▣<span>Assets</span></button>
+      <button class="nav-item scan-nav" data-screen="scan">⌗<span>Scan</span></button>
+      <button class="nav-item" data-screen="activity">◷<span>Activity</span></button>
+      <button class="nav-item" data-screen="settings">⚙<span>Settings</span></button>
+    </nav>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card glass" id="modalCard"></div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
