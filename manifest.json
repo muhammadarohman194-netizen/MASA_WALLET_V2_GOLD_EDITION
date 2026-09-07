@@ -1,0 +1,22 @@
+{
+  "name": "MASA Wallet",
+  "short_name": "MASA Wallet",
+  "description": "MASA Wallet V2 Gold Edition",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "assets/masa-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/masa-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
