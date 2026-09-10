@@ -1,4 +1,4 @@
-const CACHE_NAME = "masa-wallet-v2";
+const CACHE_NAME = "masa-wallet-v1.0.0";
 
 const APP_FILES = [
   "./",

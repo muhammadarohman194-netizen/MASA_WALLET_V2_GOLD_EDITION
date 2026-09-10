@@ -1,3 +1,5 @@
+const MASA_API_BASE = 'http://127.0.0.1:8001';
+
 const MASA_APPS={dex:'http://127.0.0.1:5502/masa_dex',miner:'http://127.0.0.1:8080/'};
 const modal=document.getElementById('modal'), modalCard=document.getElementById('modalCard'), toast=document.getElementById('toast');
 const address=document.getElementById('address');
@@ -21,3 +23,42 @@ function assetsScreen(){openModal(`<div class="modal-head"><h3>My Assets</h3><bu
 function route(screen){if(screen==='send')sendScreen();if(screen==='receive')receiveScreen();if(screen==='scan')scanScreen();if(screen==='activity')activityScreen();if(screen==='settings')settingsScreen();if(screen==='assets')assetsScreen()}
 document.querySelectorAll('[data-screen]').forEach(el=>el.addEventListener('click',()=>route(el.dataset.screen)));
 document.getElementById('notifyBtn').onclick=()=>showToast('No new notifications');document.getElementById('menuBtn').onclick=()=>settingsScreen();
+
+
+async function createWalletFromAPI() {
+    const response = await fetch(`${MASA_API_BASE}/wallet/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    let payload;
+    try {
+        payload = await response.json();
+    } catch {
+        throw new Error(`MASA-API returned non-JSON response (HTTP ${response.status})`);
+    }
+
+    if (!response.ok || payload.success !== true) {
+        throw new Error(payload.detail || `MASA-API request failed (HTTP ${response.status})`);
+    }
+
+    if (payload.network !== 'testnet') {
+        throw new Error('MASA-API returned an unexpected network.');
+    }
+
+    if (!payload.wallet ||
+        typeof payload.wallet.public_key !== 'string' ||
+        typeof payload.wallet.address !== 'string' ||
+        !payload.wallet.public_key ||
+        !payload.wallet.address) {
+        throw new Error('MASA-API returned invalid wallet data.');
+    }
+
+    if ('private_key' in payload.wallet) {
+        throw new Error('Security error: private_key must never be returned to Wallet frontend.');
+    }
+
+    return payload.wallet;
+}
